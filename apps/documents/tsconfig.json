@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@app/*": ["./app/*"],
+      "@app/*": ["src/app/*"],
       "@src/*": ["src/*"],
       "@static/*": ["static/*"],
       "@css/*": ["../../packages/style/src/css/*"]
