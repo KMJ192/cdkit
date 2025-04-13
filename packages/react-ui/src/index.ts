@@ -1,10 +1,8 @@
 // layouts
-export { default as Center } from './layout/Center/Center';
-export type { CenterProps } from './layout/Center/Center';
 export { default as Flex } from './layout/Flex/Flex';
-export type { FlexProps } from './layout/Flex/Flex';
 export { default as Grid } from './layout/Grid/Grid';
-export type { GridProps } from './layout/Grid/Grid';
+export { default as Center } from './layout/Center/Center';
+
 export { default as Float } from './layout/Float/Float';
 export type { FloatProps } from './layout/Float/Float';
 export { default as Row } from './layout/Row/Row';

@@ -1,59 +1,101 @@
 import React from 'react';
-
-import type {
-  CSS_DISPLAY,
-  CSS_DISPLAY_FLEX_DIRECTION,
-  OVER_RIDABLE_PROPS,
-} from '@src/types/types';
-
-import classNames from 'classnames/bind';
-import style from '@css/layout/Center/style.module.scss';
-const cx = classNames.bind(style);
+import styled from 'styled-components';
+import { BASE_PROPS, CSS_DISPLAY_FLEX_DIRECTION } from '@src/types/types';
 
 type BaseProps = {
   vertical?: boolean;
   horizontal?: boolean;
   children?: React.ReactNode;
-  display?: CSS_DISPLAY;
   flexDirection?: CSS_DISPLAY_FLEX_DIRECTION;
 };
 
+type Props<T extends React.ElementType> = BASE_PROPS<T> & BaseProps;
+
 const DEFAULT_ELEMENT = 'div';
 
-type Props<T extends React.ElementType> = OVER_RIDABLE_PROPS<T, BaseProps>;
+type ELEMENT_TYPE = typeof DEFAULT_ELEMENT;
 
-function Center<T extends React.ElementType = typeof DEFAULT_ELEMENT>(
-  {
-    as,
-    vertical = true,
-    horizontal = true,
-    children,
-    display = 'flex',
-    flexDirection,
-    className,
-    ...props
-  }: Props<T>,
-  ref: React.Ref<React.ElementRef<typeof DEFAULT_ELEMENT>>,
-) {
-  const ELEMENT = as || DEFAULT_ELEMENT;
+const Container = styled.div<Props<ELEMENT_TYPE>>`
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  ${({ flexDirection }) => {
+    if (flexDirection) {
+      return `
+        -webkit-box-orient: ${
+          flexDirection.includes('column') ? 'vertical' : 'horizontal'
+        };
+        -webkit-box-direction: ${
+          flexDirection.includes('reverse') ? 'reverse' : 'normal'
+        };
+        -webkit-flex-direction: ${flexDirection};
+        -moz-flex-direction: ${flexDirection};
+        -ms-flex-direction: ${flexDirection};
+        flex-direction: ${flexDirection};
+      `;
+    }
+    return `
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: row;
+      -moz-flex-direction: row;
+      -ms-flex-direction: row;
+      flex-direction: row;
+    `;
+  }}
 
+  ${({ vertical, horizontal }) => {
+    if (vertical && !horizontal) {
+      return `
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+      `;
+    }
+    if (horizontal && !vertical) {
+      return `
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+      `;
+    }
+
+    return `
+      align-items: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+    `;
+  }}
+`;
+
+function BaseComponent<T extends React.ElementType = typeof DEFAULT_ELEMENT>({
+  children,
+  vertical = true,
+  horizontal = true,
+  flexDirection = 'row',
+  ...props
+}: Props<T>) {
   return (
-    <ELEMENT
+    <Container
       {...props}
-      ref={ref}
-      className={cx(
-        'center',
-        display,
-        flexDirection,
-        { vertical },
-        { horizontal },
-        className,
-      )}
+      vertical={vertical}
+      horizontal={horizontal}
+      flexDirection={flexDirection}
     >
       {children}
-    </ELEMENT>
+    </Container>
   );
 }
 
-export type CenterProps = Props<typeof DEFAULT_ELEMENT>;
-export default React.forwardRef(Center) as typeof Center;
+export default BaseComponent;
