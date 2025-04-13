@@ -1,4 +1,8 @@
-import { ComponentPropsWithRef, ElementType } from 'react';
+import type { ComponentPropsWithRef, ElementType } from 'react';
+
+export type BASE_PROPS<T extends ElementType> = {
+  as?: T;
+} & Omit<ComponentPropsWithRef<T>, 'as'>;
 
 type COMBINE<T, K> = T & Omit<K, keyof T>;
 
