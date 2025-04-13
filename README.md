@@ -44,12 +44,13 @@ yarn workspace @cdkit/documents start
 ### dev
 
 - Yarn Workspace
-- React
+- React(v18)
 - NextJS(13)
 - Typescript
 - Rollup
+- Vite
 - sass
-- Yarn berry (zero install)
+- pnpm
 
 ##### git commit message
 
