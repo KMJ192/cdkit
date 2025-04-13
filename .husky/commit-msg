@@ -1,0 +1,65 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+commit_msg_file="$1"
+commit_msg=$(cat "$commit_msg_file")
+
+commit_action_feat="feat"
+commit_action_fix="fix"
+commit_action_type="type"
+commit_action_refactor="refactor"
+commit_action_docs="docs"
+commit_action_test="test"
+commit_action_build="build"
+commit_action_etc="etc"
+
+workspace="workspace"
+css="css"
+common="common"
+react_ui="react-ui"
+react_modules="react-modules"
+documents="documents"
+
+echo "Commit message: [ $commit_msg ]"
+
+if [[ $commit_msg == *"(fp)" ]]; then
+  echo "FORCE PUSH"
+else
+  if [[ $commit_msg == *"$commit_action_feat"* ]]; then
+    echo "기능 추가, 삭제, 변경 (코드 수정)"
+  elif [[ $commit_msg == *"$commit_action_fix"* ]]; then
+    echo "버그 수정"
+  elif [[ $commit_msg == *"$commit_action_type"* ]]; then
+    echo "코드 형식 변경"
+  elif [[ $commit_msg == *"$commit_action_refactor"* ]]; then
+    echo "코드 리팩토링"
+  elif [[ $commit_msg == *"$commit_action_docs"* ]]; then
+    echo "코드 외 문서의 추가, 삭제, 변경"
+  elif [[ $commit_msg == *"$commit_action_test"* ]]; then
+    echo "테스트 코드 추가, 삭제, 변경"
+  elif [[ $commit_msg == *"$commit_action_build"* ]]; then
+    echo "빌드 옵션 변경"
+  elif [[ $commit_msg == *"$commit_action_etc"* ]]; then
+    echo "위 해당 사항이 없는 모든 변경 사항"
+  else
+    echo "커밋 메시지(액션)를 다시 확인해주세요."
+    exit 1
+  fi
+
+  if [[ $commit_msg == *"$workspace"* ]]; then
+    echo "Workspace 작업"
+  elif [[ $commit_msg == *"$css"* ]]; then
+    echo "css 및 css 문서 작업"  
+  elif [[ $commit_msg == *"$react_ui"* ]]; then
+    echo "React-UI 작업"
+  elif [[ $commit_msg == *"$react_modules"* ]]; then
+    echo "React-Modules 작업"
+  elif [[ $commit_msg == *"$documents"* ]]; then
+    echo "Documents 작업"
+  elif [[ $commit_msg == *"$common"* ]]; then
+    echo "Common 작업"
+  else 
+    echo "커밋 메시지(프로젝트)를 다시 확인하세요."
+    exit 1
+  fi
+fi 
