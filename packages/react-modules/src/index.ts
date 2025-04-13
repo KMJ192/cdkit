@@ -15,11 +15,12 @@ export {
 export { default as useComponentDidMount } from './hooks/useComponentDidMount/useComponentDidMount.ts';
 export { default as useIsomorphicLayoutEffect } from './hooks/useIsomorphicLayoutEffect/useIsomorphicLayoutEffect.ts';
 export {
-  useClickAway,
+  default as useClickAway,
   type UseClickAwayParams,
-} from './hooks/useClickAway/index.ts';
+} from './hooks/useClickAway/useClickAway.tsx';
 export { default as useDebounce } from './hooks/useDebounce/useDebounce.ts';
 export { default as useThrottle } from './hooks/useThrottle/useThrottle.ts';
 export { default as useTimeout } from './hooks/useTimeout/useTimeout.ts';
 export { default as useInterval } from './hooks/useInterval/useInterval.ts';
 export { default as useRequestAnimationFrame } from './hooks/useRequestAnimationFrame/useRequestAnimationFrame.ts';
+export { sleep } from './utils/utils.ts';

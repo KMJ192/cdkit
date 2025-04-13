@@ -2,13 +2,15 @@ import React, { type ComponentRef, useEffect, useRef } from 'react';
 import { styled } from 'styled-components';
 import { BASE_PROPS } from '@src/types/types.ts';
 
-type Props<T extends React.ElementType> = BASE_PROPS<T> & {
+type BaseProp = {
   isExecute?: boolean;
   children?: React.ReactNode;
   loadingElement?: React.ReactNode;
   isLoading: boolean;
   onLoad: () => void;
 };
+
+type Props<T extends React.ElementType> = BASE_PROPS<T> & BaseProp;
 
 const DEFAULT_ELEMENT = 'div';
 
