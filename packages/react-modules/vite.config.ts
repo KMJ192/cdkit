@@ -1,9 +1,8 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
 import path from 'path';
-import autoprefixer from 'autoprefixer';
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react-swc';
 
-const banner = `"use client";import "./index.css";`;
+const banner = `"use client";`;
 
 export default defineConfig({
   build: {
@@ -13,20 +12,33 @@ export default defineConfig({
       fileName: 'index',
     },
     rollupOptions: {
-      external: ['react', 'react-dom'],
+      external: ['react', 'react-dom', 'styled-components'],
       output: {
         banner,
+        globals: {
+          'styled-components': 'styled',
+        },
       },
     },
     outDir: './build',
-  },
-  plugins: [react()],
-  css: {
-    modules: true,
-    postcss: {
-      plugins: [autoprefixer()],
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+      format: {
+        comments: false,
+      },
     },
+    sourcemap: true,
+    reportCompressedSize: true,
   },
+  plugins: [
+    react({
+      jsxImportSource: 'react',
+    }),
+  ],
   resolve: {
     alias: {
       '@src': path.resolve(__dirname, 'src'),

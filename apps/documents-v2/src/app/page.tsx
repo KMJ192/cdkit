@@ -1,3 +1,5 @@
+import Page from '@/appIsomorphic/Page';
+
 export default function Home() {
-  return <div></div>;
+  return <Page />;
 }
