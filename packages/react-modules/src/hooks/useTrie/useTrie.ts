@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react';
 
-import { Trie, type TrieData } from './Trie/index.ts';
-import Hangul from './Trie/Hangul.ts';
+import { Trie, type TrieData } from './Trie/index';
+import Hangul from './Trie/Hangul';
 
 type Params<T = unknown> = {
   dictionary?: Array<TrieData<T>>;

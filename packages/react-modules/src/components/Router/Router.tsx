@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import authenticator from './authenticator.ts';
+import authenticator from './authenticator';
 
 import type { Auth, RouterMap } from './types.ts';
 

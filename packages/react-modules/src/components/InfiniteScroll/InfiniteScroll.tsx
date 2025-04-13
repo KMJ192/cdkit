@@ -1,6 +1,6 @@
 import React, { type ComponentRef, useEffect, useRef } from 'react';
 import { styled } from 'styled-components';
-import { BASE_PROPS } from '@src/types/types.ts';
+import { BASE_PROPS } from '@src/types/types';
 
 type BaseProp = {
   isExecute?: boolean;

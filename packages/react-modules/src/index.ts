@@ -2,8 +2,8 @@
 // export type { RouterMap } from './components/Router/types';
 
 // Components
-export { When, Unless } from './components/WhenUnless/index.ts';
-export { default as InfiniteScroll } from './components/InfiniteScroll/InfiniteScroll.tsx';
+export { When, Unless } from './components/WhenUnless';
+export { default as InfiniteScroll } from './components/InfiniteScroll/InfiniteScroll';
 
 // Hooks
 export {
@@ -11,16 +11,16 @@ export {
   type UseTrieParams,
   type TrieData,
   type TrieDataKey,
-} from './hooks/useTrie/index.ts';
-export { default as useComponentDidMount } from './hooks/useComponentDidMount/useComponentDidMount.ts';
-export { default as useIsomorphicLayoutEffect } from './hooks/useIsomorphicLayoutEffect/useIsomorphicLayoutEffect.ts';
+} from './hooks/useTrie';
+export { default as useComponentDidMount } from './hooks/useComponentDidMount/useComponentDidMount';
+export { default as useIsomorphicLayoutEffect } from './hooks/useIsomorphicLayoutEffect/useIsomorphicLayoutEffect';
 export {
   default as useClickAway,
   type UseClickAwayParams,
-} from './hooks/useClickAway/useClickAway.tsx';
-export { default as useDebounce } from './hooks/useDebounce/useDebounce.ts';
-export { default as useThrottle } from './hooks/useThrottle/useThrottle.ts';
-export { default as useTimeout } from './hooks/useTimeout/useTimeout.ts';
-export { default as useInterval } from './hooks/useInterval/useInterval.ts';
-export { default as useRequestAnimationFrame } from './hooks/useRequestAnimationFrame/useRequestAnimationFrame.ts';
-export { sleep } from './utils/utils.ts';
+} from './hooks/useClickAway/useClickAway';
+export { default as useDebounce } from './hooks/useDebounce/useDebounce';
+export { default as useThrottle } from './hooks/useThrottle/useThrottle';
+export { default as useTimeout } from './hooks/useTimeout/useTimeout';
+export { default as useInterval } from './hooks/useInterval/useInterval';
+export { default as useRequestAnimationFrame } from './hooks/useRequestAnimationFrame/useRequestAnimationFrame';
+export { sleep } from './utils/utils';

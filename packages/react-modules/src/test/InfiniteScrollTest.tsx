@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { sleep } from '../utils/utils.ts';
-import { InfiniteScroll } from '../index.ts';
+import { sleep } from '../utils/utils';
+import { InfiniteScroll } from '../index';
 
 function InfiniteScrollTest() {
   const [list, setList] = useState(Array.from({ length: 20 }, () => 0));

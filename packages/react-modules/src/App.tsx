@@ -1,4 +1,4 @@
-import InfiniteScrollTest from './test/InfiniteScrollTest.tsx';
+import InfiniteScrollTest from './test/InfiniteScrollTest';
 
 function App() {
   return (
