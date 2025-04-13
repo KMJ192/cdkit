@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { Auth } from './types';
+import type { Auth } from './types.ts';
 
 type Props = {
   auth: Auth;

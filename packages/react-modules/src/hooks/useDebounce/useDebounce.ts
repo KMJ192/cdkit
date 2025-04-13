@@ -4,7 +4,7 @@ function useDebounce<T extends Array<any>>(
   callback: (...params: T) => void,
   delay: number,
 ) {
-  const timerId = useRef<NodeJS.Timeout | null>(null);
+  const timerId = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   return (...params: T) => {
     if (timerId.current) clearTimeout(timerId.current);
