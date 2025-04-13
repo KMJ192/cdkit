@@ -13,6 +13,5 @@
   "jsxBracketSameLine": false,
   "requirePragma": false,
   "insertPragma": false,
-  "proseWrap": "preserve",
-  "vueIndentScriptAndStyle": false
+  "proseWrap": "preserve"
 }

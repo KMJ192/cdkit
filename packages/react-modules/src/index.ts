@@ -2,11 +2,8 @@
 // export type { RouterMap } from './components/Router/types';
 
 // Components
-export { When, Unless } from './components/WhenUnless';
-export {
-  default as InfiniteScroll,
-  type InfiniteScrollProps,
-} from './components/InfiniteScroll/InfiniteScroll';
+export { When, Unless } from './components/WhenUnless/index.ts';
+export { default as InfiniteScroll } from './components/InfiniteScroll/InfiniteScroll.tsx';
 
 // Hooks
 export {
@@ -14,12 +11,15 @@ export {
   type UseTrieParams,
   type TrieData,
   type TrieDataKey,
-} from './hooks/useTrie';
-export { default as useComponentDidMount } from './hooks/useComponentDidMount/useComponentDidMount';
-export { default as useIsomorphicLayoutEffect } from './hooks/useIsomorphicLayoutEffect/useIsomorphicLayoutEffect';
-export { useClickAway, type UseClickAwayParams } from './hooks/useClickAway';
-export { default as useDebounce } from './hooks/useDebounce/useDebounce';
-export { default as useThrottle } from './hooks/useThrottle/useThrottle';
-export { default as useTimeout } from './hooks/useTimeout/useTimeout';
-export { default as useInterval } from './hooks/useInterval/useInterval';
-export { default as useRequestAnimationFrame } from './hooks/useRequestAnimationFrame/useRequestAnimationFrame';
+} from './hooks/useTrie/index.ts';
+export { default as useComponentDidMount } from './hooks/useComponentDidMount/useComponentDidMount.ts';
+export { default as useIsomorphicLayoutEffect } from './hooks/useIsomorphicLayoutEffect/useIsomorphicLayoutEffect.ts';
+export {
+  useClickAway,
+  type UseClickAwayParams,
+} from './hooks/useClickAway/index.ts';
+export { default as useDebounce } from './hooks/useDebounce/useDebounce.ts';
+export { default as useThrottle } from './hooks/useThrottle/useThrottle.ts';
+export { default as useTimeout } from './hooks/useTimeout/useTimeout.ts';
+export { default as useInterval } from './hooks/useInterval/useInterval.ts';
+export { default as useRequestAnimationFrame } from './hooks/useRequestAnimationFrame/useRequestAnimationFrame.ts';

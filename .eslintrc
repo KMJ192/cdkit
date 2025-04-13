@@ -71,7 +71,8 @@
     "no-alert": 1,
     "no-console": 1,
     "no-lonely-if": 0,
-    "no-underscore-dangle": 0
+    "no-underscore-dangle": 0,
+    "camelcase": 0
   },
   "overrides": [
     {

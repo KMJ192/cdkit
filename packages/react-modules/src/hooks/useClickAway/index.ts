@@ -1,4 +1,4 @@
 export {
   default as useClickAway,
   type UseClickAwayParams,
-} from './useClickAway';
+} from './useClickAway.ts';

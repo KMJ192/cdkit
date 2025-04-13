@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import authenticator from './authenticator';
+import authenticator from './authenticator.ts';
 
-import type { Auth, RouterMap } from './types';
+import type { Auth, RouterMap } from './types.ts';
 
 type Props = {
   auth: Auth;

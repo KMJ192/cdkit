@@ -1,48 +1,47 @@
-import { useEffect, useRef, forwardRef } from 'react';
-import type { ReactNode, Ref, ElementRef, RefObject } from 'react';
+import React, { type ComponentRef, useEffect, useRef } from 'react';
+import { styled } from 'styled-components';
+import { BASE_PROPS } from '@src/types/types.ts';
 
-import type { OVER_RIDABLE_PROPS } from '@src/types/types';
-
-import classNames from 'classnames/bind';
-import style from './style.module.scss';
-const cx = classNames.bind(style);
-
-type BaseProps = {
+type Props<T extends React.ElementType> = BASE_PROPS<T> & {
   isExecute?: boolean;
-  children?: ReactNode;
-  loadingElement?: ReactNode;
+  children?: React.ReactNode;
+  loadingElement?: React.ReactNode;
   isLoading: boolean;
   onLoad: () => void;
 };
 
 const DEFAULT_ELEMENT = 'div';
 
-type Props<T extends React.ElementType> = OVER_RIDABLE_PROPS<T, BaseProps>;
+const Container = styled.div`
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+`;
 
-function InfiniteScroll<T extends React.ElementType = typeof DEFAULT_ELEMENT>(
-  {
-    as,
-    children,
-    isLoading,
-    loadingElement,
-    isExecute = true,
-    onLoad = () => {},
-    className,
-    ...props
-  }: Props<T>,
-  ref: Ref<ElementRef<typeof DEFAULT_ELEMENT>>,
-) {
-  const ELEMENT = as || DEFAULT_ELEMENT;
+const Loader = styled.div`
+  width: inherit;
+  height: fit-content;
+`;
 
+function InfiniteScroll<T extends React.ElementType = typeof DEFAULT_ELEMENT>({
+  children,
+  isLoading,
+  loadingElement,
+  isExecute = true,
+  onLoad = () => {},
+  ...props
+}: Props<T>) {
   const containerRef = useRef<HTMLDivElement>(null);
   const observingNodeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (isLoading) {
-      let container: null | ElementRef<typeof DEFAULT_ELEMENT> = null;
-      if (ref && (ref as any).current) {
-        container = (ref as RefObject<ElementRef<typeof DEFAULT_ELEMENT>>)
-          .current;
+      let container: null | ComponentRef<typeof DEFAULT_ELEMENT> = null;
+      if (props.ref && props.ref.current) {
+        container = props.ref.current;
       } else if (containerRef.current) {
         container = containerRef.current;
       }
@@ -72,18 +71,11 @@ function InfiniteScroll<T extends React.ElementType = typeof DEFAULT_ELEMENT>(
   }, [isExecute, isLoading, onLoad]);
 
   return (
-    <ELEMENT
-      {...props}
-      ref={ref ?? containerRef}
-      className={cx('container', className)}
-    >
+    <Container {...props}>
       {children}
-      <div ref={observingNodeRef} className={cx('loader')}>
-        {isLoading && loadingElement}
-      </div>
-    </ELEMENT>
+      <Loader ref={observingNodeRef}>{isLoading && loadingElement}</Loader>
+    </Container>
   );
 }
 
-export type InfiniteScrollProps = Props<typeof DEFAULT_ELEMENT>;
-export default forwardRef(InfiniteScroll) as typeof InfiniteScroll;
+export default InfiniteScroll;
