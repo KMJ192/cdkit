@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { BASE_PROPS } from '@src/types/types';
 
 type BaseProps = {
@@ -12,17 +12,10 @@ const DEFAULT_ELEMENT = 'div';
 
 type ELEMENT_TYPE = typeof DEFAULT_ELEMENT;
 
-const Container = styled.div<Props<ELEMENT_TYPE>>`
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-
-  @supports (display: grid) {
-    display: -ms-grid;
-    display: -webkit-grid;
-    display: grid;
-  }
+const Container = styled(DEFAULT_ELEMENT)<Props<ELEMENT_TYPE>>`
+  display: -ms-grid;
+  display: -webkit-grid;
+  display: grid;
 `;
 
 function BaseComponent<T extends React.ElementType = typeof DEFAULT_ELEMENT>({

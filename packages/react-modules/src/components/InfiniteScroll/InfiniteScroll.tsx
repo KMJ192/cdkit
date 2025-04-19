@@ -1,5 +1,5 @@
 import React, { type ComponentRef, useEffect, useRef } from 'react';
-import { styled } from 'styled-components';
+import styled from '@emotion/styled';
 import { BASE_PROPS } from '@src/types/types';
 
 type BaseProp = {
@@ -14,7 +14,7 @@ type Props<T extends React.ElementType> = BASE_PROPS<T> & BaseProp;
 
 const DEFAULT_ELEMENT = 'div';
 
-const Container = styled.div`
+const Container = styled(DEFAULT_ELEMENT)`
   box-sizing: border-box;
   position: relative;
   display: block;

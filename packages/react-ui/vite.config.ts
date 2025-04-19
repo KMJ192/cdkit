@@ -1,6 +1,5 @@
 import path from 'path';
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react-swc';
 
 const banner = `"use client";`;
 
@@ -12,12 +11,9 @@ export default defineConfig({
       fileName: 'index',
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'styled-components'],
+      external: ['react', 'react-dom'],
       output: {
         banner,
-        globals: {
-          'styled-components': 'styled',
-        },
       },
     },
     outDir: './build',

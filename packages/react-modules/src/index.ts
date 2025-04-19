@@ -1,5 +1,7 @@
-// export { default as Router } from './components/Router/Router';
-// export type { RouterMap } from './components/Router/types';
+export { default as Router } from './components/Router/Router';
+export type { RouterMap } from './components/Router/types';
+
+export { default as TestComponent } from './components/TestComponent/TestComponent';
 
 // Components
 export { When, Unless } from './components/WhenUnless';

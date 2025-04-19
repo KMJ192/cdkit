@@ -12,22 +12,19 @@ const DEFAULT_ELEMENT = 'div';
 
 type ELEMENT_TYPE = typeof DEFAULT_ELEMENT;
 
-const Container = styled.div<Props<ELEMENT_TYPE>>`
+const Container = styled(DEFAULT_ELEMENT)<Props<ELEMENT_TYPE>>`
   /* 기본 스타일 */
   box-sizing: border-box;
   position: relative;
   display: block;
   width: 100%;
   height: 100%;
+  color: #000;
+  background-color: #fff;
 
-  /* 커스텀 스타일을 위한 클래스 */
-  &.custom {
-    /* 커스텀 스타일 */
-  }
-
-  /* 상태별 스타일 */
   &:hover {
-    /* 호버 스타일 */
+    color: #fff;
+    background-color: #000;
   }
 
   &:active {
@@ -41,11 +38,11 @@ const Container = styled.div<Props<ELEMENT_TYPE>>`
   }
 `;
 
-function BaseComponent<T extends React.ElementType = typeof DEFAULT_ELEMENT>({
+function TestComponent<T extends React.ElementType = typeof DEFAULT_ELEMENT>({
   children,
   ...props
 }: Props<T>) {
   return <Container {...props}>{children}</Container>;
 }
 
-export default BaseComponent;
+export default TestComponent;
