@@ -2,15 +2,9 @@
 export { default as Flex } from './layout/Flex/Flex';
 export { default as Grid } from './layout/Grid/Grid';
 export { default as Center } from './layout/Center/Center';
-
 export { default as Float } from './layout/Float/Float';
-export type { FloatProps } from './layout/Float/Float';
 export { default as Row } from './layout/Row/Row';
-export type { RowProps } from './layout/Row/Row';
 export { default as Spacing } from './layout/Spacing/Spacing';
-export type { SpacingProps } from './layout/Spacing/Spacing';
-export { default as Stack } from './layout/Stack/Stack';
-export type { StackProps } from './layout/Stack/Stack';
 
 // components
 export { Badge, type BadgeProps } from './components/Badge';

@@ -1,41 +1,31 @@
 import React from 'react';
-
-import type {
-  CSS_DISPLAY,
-  CSS_DISPLAY_FLEX_DIRECTION,
-  OVER_RIDABLE_PROPS,
-} from '@src/types/types';
-
-import classNames from 'classnames/bind';
-import style from '@css/layout/Row/style.module.scss';
-const cx = classNames.bind(style);
+import styled from '@emotion/styled';
+import { BASE_PROPS } from '@src/types/types';
+import { COLOR } from '@src/styles/color/color';
 
 type BaseProps = {
-  display?: CSS_DISPLAY;
-  flexDirection?: CSS_DISPLAY_FLEX_DIRECTION;
   children?: React.ReactNode;
 };
 
+type Props<T extends React.ElementType> = BASE_PROPS<T> & BaseProps;
+
 const DEFAULT_ELEMENT = 'div';
 
-type Props<T extends React.ElementType> = OVER_RIDABLE_PROPS<T, BaseProps>;
+type ELEMENT_TYPE = typeof DEFAULT_ELEMENT;
 
-function Row<T extends React.ElementType = typeof DEFAULT_ELEMENT>(
-  { as, display, flexDirection, children, className, ...props }: Props<T>,
-  ref: React.Ref<React.ElementRef<typeof DEFAULT_ELEMENT>>,
-) {
-  const ELEMENT = as || DEFAULT_ELEMENT;
+const Container = styled(DEFAULT_ELEMENT)<Props<ELEMENT_TYPE>>`
+  padding: 1rem 1.5rem;
+  border-radius: 0.375px;
+  color: ${COLOR.LIGHT.TEXT};
+  background-color: ${COLOR.LIGHT.PRIMARY_000};
+  box-shadow: 0px 3px 6px rgba(64, 64, 64, 0.2);
+`;
 
-  return (
-    <ELEMENT
-      {...props}
-      ref={ref}
-      className={cx('row', display, flexDirection, className)}
-    >
-      {children}
-    </ELEMENT>
-  );
+function Row<T extends React.ElementType = typeof DEFAULT_ELEMENT>({
+  children,
+  ...props
+}: Props<T>) {
+  return <Container {...props}>{children}</Container>;
 }
 
-export type RowProps = Props<typeof DEFAULT_ELEMENT>;
-export default React.forwardRef(Row) as typeof Row;
+export default Row;

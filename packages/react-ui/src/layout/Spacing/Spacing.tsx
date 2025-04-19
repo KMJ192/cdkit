@@ -1,12 +1,7 @@
 import React from 'react';
-
-import type { OVER_RIDABLE_PROPS } from '@src/types/types';
-
+import styled from '@emotion/styled';
+import { BASE_PROPS } from '@src/types/types';
 import { getStyle } from './calcStyle';
-
-import classNames from 'classnames/bind';
-import style from '@css/layout/Spacing/style.module.scss';
-const cx = classNames.bind(style);
 
 type BaseProps = {
   direction?: 'horizontal' | 'vertical';
@@ -14,23 +9,22 @@ type BaseProps = {
   spacing?: number;
 };
 
+type Props<T extends React.ElementType> = BASE_PROPS<T> & BaseProps;
+
 const DEFAULT_ELEMENT = 'div';
 
-type Props<T extends React.ElementType> = OVER_RIDABLE_PROPS<T, BaseProps>;
+type ELEMENT_TYPE = typeof DEFAULT_ELEMENT;
 
-function Spacing<T extends React.ElementType = typeof DEFAULT_ELEMENT>(
-  {
-    as,
-    direction = 'vertical',
-    unit = 'px',
-    spacing,
-    className,
-    style,
-    ...props
-  }: Props<T>,
-  ref: React.Ref<React.ElementRef<typeof DEFAULT_ELEMENT>>,
-) {
-  const ELEMENT = as || DEFAULT_ELEMENT;
+const Container = styled(DEFAULT_ELEMENT)<Props<ELEMENT_TYPE>>``;
+
+function Spacing<T extends React.ElementType = typeof DEFAULT_ELEMENT>({
+  children,
+  direction = 'vertical',
+  unit = 'px',
+  spacing,
+  style,
+  ...props
+}: Props<T>) {
   const curStyle = getStyle({
     direction,
     spacing,
@@ -39,14 +33,10 @@ function Spacing<T extends React.ElementType = typeof DEFAULT_ELEMENT>(
   });
 
   return (
-    <ELEMENT
-      {...props}
-      ref={ref}
-      style={curStyle}
-      className={cx('spacing', direction, className)}
-    />
+    <Container {...props} style={curStyle}>
+      {children}
+    </Container>
   );
 }
 
-export type SpacingProps = Props<typeof DEFAULT_ELEMENT>;
-export default React.forwardRef(Spacing) as typeof Spacing;
+export default Spacing;

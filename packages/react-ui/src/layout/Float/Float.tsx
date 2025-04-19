@@ -1,16 +1,8 @@
 import React from 'react';
-
-import type {
-  CSS_DISPLAY,
-  CSS_DISPLAY_FLEX_DIRECTION,
-  OVER_RIDABLE_PROPS,
-} from '@src/types/types';
-
+import styled from '@emotion/styled';
+import { BASE_PROPS } from '@src/types/types';
+import { flex } from '../Flex/Flex';
 import { getStyle } from './calcStyle';
-
-import classNames from 'classnames/bind';
-import style from '@css/layout/Float/style.module.scss';
-const cx = classNames.bind(style);
 
 type BaseProps = {
   children?: React.ReactNode;
@@ -19,32 +11,29 @@ type BaseProps = {
   right?: number;
   top?: number;
   bottom?: number;
-  display?: CSS_DISPLAY;
-  flexDirection?: CSS_DISPLAY_FLEX_DIRECTION;
 };
+
+type Props<T extends React.ElementType> = BASE_PROPS<T> & BaseProps;
 
 const DEFAULT_ELEMENT = 'div';
 
-type Props<T extends React.ElementType> = OVER_RIDABLE_PROPS<T, BaseProps>;
+type ELEMENT_TYPE = typeof DEFAULT_ELEMENT;
 
-function Float<T extends React.ElementType = typeof DEFAULT_ELEMENT>(
-  {
-    as,
-    children,
-    startDirection = 'lt',
-    left,
-    right,
-    top,
-    bottom,
-    display,
-    flexDirection,
-    style,
-    className,
-    ...props
-  }: Props<T>,
-  ref: React.Ref<React.ElementRef<typeof DEFAULT_ELEMENT>>,
-) {
-  const ELEMENT = as || DEFAULT_ELEMENT;
+const Container = styled.div<Props<ELEMENT_TYPE>>`
+  position: fixed;
+  ${flex()}
+`;
+
+function Float<T extends React.ElementType = typeof DEFAULT_ELEMENT>({
+  children,
+  startDirection = 'lt',
+  left,
+  right,
+  top,
+  bottom,
+  style,
+  ...props
+}: Props<T>) {
   const curStyle = getStyle({
     left,
     right,
@@ -55,16 +44,10 @@ function Float<T extends React.ElementType = typeof DEFAULT_ELEMENT>(
   });
 
   return (
-    <ELEMENT
-      {...props}
-      ref={ref}
-      style={curStyle}
-      className={cx('float', display, flexDirection, startDirection, className)}
-    >
+    <Container {...props} style={curStyle}>
       {children}
-    </ELEMENT>
+    </Container>
   );
 }
 
-export type FloatProps = Props<typeof DEFAULT_ELEMENT>;
-export default React.forwardRef(Float) as typeof Float;
+export default Float;

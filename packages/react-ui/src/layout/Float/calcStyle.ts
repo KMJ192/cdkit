@@ -1,4 +1,4 @@
-import type { FloatProps } from './Float';
+import type { FloatProps } from './FloatLagacy';
 
 const getStyle = ({
   startDirection,

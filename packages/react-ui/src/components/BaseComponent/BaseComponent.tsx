@@ -12,7 +12,7 @@ const DEFAULT_ELEMENT = 'div';
 
 type ELEMENT_TYPE = typeof DEFAULT_ELEMENT;
 
-const Container = styled.div<Props<ELEMENT_TYPE>>`
+const Container = styled(DEFAULT_ELEMENT)<Props<ELEMENT_TYPE>>`
   /* 기본 스타일 */
   box-sizing: border-box;
   position: relative;

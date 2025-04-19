@@ -1,11 +1,16 @@
-import type { SpacingProps } from './Spacing';
+import type { CSSProperties } from 'react';
 
 const getStyle = ({
   direction,
   spacing,
   style,
   unit,
-}: Pick<SpacingProps, 'direction' | 'spacing' | 'style' | 'unit'>) => {
+}: {
+  direction?: 'horizontal' | 'vertical';
+  unit?: 'px' | 'em' | 'rem';
+  spacing?: number;
+  style?: CSSProperties;
+}) => {
   let newStyle = {};
   const isSpacing = typeof spacing === 'number';
 
