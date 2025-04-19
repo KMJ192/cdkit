@@ -7,7 +7,8 @@ export { default as Row } from './layout/Row/Row';
 export { default as Spacing } from './layout/Spacing/Spacing';
 
 // components
-export { Badge, type BadgeProps } from './components/Badge';
+export { default as Badge } from './components/Badge/Badge';
+
 export {
   Button,
   type ButtonProps,
