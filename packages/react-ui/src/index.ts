@@ -8,20 +8,11 @@ export { default as Spacing } from './layout/Spacing/Spacing';
 
 // components
 export { default as Badge } from './components/Badge/Badge';
+export { default as Spinner } from './components/Spinner/Spinner';
+export { default as Button } from './components/Button/Button';
+export { default as Card } from './components/Card/Card';
+export { default as Checkbox } from './components/Checkbox/Checkbox';
 
-export {
-  Button,
-  type ButtonProps,
-  type ButtonLoadingSpinnerProps,
-  type ButtonShape,
-  type ButtonVariant,
-} from './components/Button';
-export { Card, type CardProps } from './components/Card';
-export {
-  Checkbox,
-  type CheckboxProps,
-  type CheckboxMarkProps,
-} from './components/Checkbox';
 export {
   DataTable,
   DataTableContainer,
@@ -68,10 +59,7 @@ export {
   type SwitchProps,
   type SwitchBulletProps,
 } from './components/Switch';
-export {
-  default as Spinner,
-  type SpinnerProps,
-} from './components/Spinner/Spinner';
+
 export {
   Tab,
   type TabProps,

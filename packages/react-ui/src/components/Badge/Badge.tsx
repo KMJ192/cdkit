@@ -6,8 +6,6 @@ import { COLOR } from '@src/styles/color/color';
 type BaseProps = {
   children?: React.ReactNode;
   colorSchema?: 'primary' | 'success' | 'info' | 'warning' | 'danger';
-  centerVertical?: boolean;
-  centerHorizontal?: boolean;
 };
 
 type Props<T extends React.ElementType> = BASE_PROPS<T> & BaseProps;
@@ -26,40 +24,46 @@ const Container = styled(DEFAULT_ELEMENT)<Props<ELEMENT_TYPE>>`
   ${({ colorSchema }) => {
     if (colorSchema === 'success') {
       return `
-        color: ${COLOR.LIGHT.PRIMARY000};
-        background-color: ${COLOR.LIGHT.SUCCESS};
+        color: ${COLOR.LIGHT.primary['000']};
+        background-color: ${COLOR.LIGHT.success};
       `;
     }
     if (colorSchema === 'info') {
       return `
-        color: ${COLOR.LIGHT.TEXT};
-        background-color: ${COLOR.LIGHT.INFO};
+        color: ${COLOR.LIGHT.text};
+        background-color: ${COLOR.LIGHT.info};
       `;
     }
     if (colorSchema === 'warning') {
       return `
-        color: ${COLOR.LIGHT.TEXT};
-        background-color: ${COLOR.LIGHT.WARNING};
+        color: ${COLOR.LIGHT.text};
+        background-color: ${COLOR.LIGHT.warning};
       `;
     }
     if (colorSchema === 'danger') {
       return `
-        color: ${COLOR.LIGHT.PRIMARY000};
-        background-color: ${COLOR.LIGHT.DANGER};
+        color: ${COLOR.LIGHT.primary['000']};
+        background-color: ${COLOR.LIGHT.danger};
       `;
     }
+
     return `
-      color: ${COLOR.LIGHT.TEXT};
-      background-color: ${COLOR.LIGHT.PRIMARY200};
+      color: ${COLOR.LIGHT.text};
+      background-color: ${COLOR.LIGHT.primary['200']};
     `;
   }}
 `;
 
 function Badge<T extends React.ElementType = typeof DEFAULT_ELEMENT>({
   children,
+  colorSchema = 'primary',
   ...props
 }: Props<T>) {
-  return <Container {...props}>{children}</Container>;
+  return (
+    <Container colorSchema={colorSchema} {...props}>
+      {children}
+    </Container>
+  );
 }
 
 export default Badge;

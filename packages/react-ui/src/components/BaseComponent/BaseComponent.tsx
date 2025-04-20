@@ -12,7 +12,7 @@ const DEFAULT_ELEMENT = 'div';
 
 type ELEMENT_TYPE = typeof DEFAULT_ELEMENT;
 
-const Container = styled(DEFAULT_ELEMENT)<Props<ELEMENT_TYPE>>`
+const Component = styled(DEFAULT_ELEMENT)<Props<ELEMENT_TYPE>>`
   /* 기본 스타일 */
   box-sizing: border-box;
   position: relative;
@@ -45,7 +45,7 @@ function BaseComponent<T extends React.ElementType = typeof DEFAULT_ELEMENT>({
   children,
   ...props
 }: Props<T>) {
-  return <Container {...props}>{children}</Container>;
+  return <Component {...props}>{children}</Component>;
 }
 
 export default BaseComponent;

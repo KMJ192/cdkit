@@ -1,59 +1,33 @@
 import React from 'react';
-
-import type {
-  CSS_DISPLAY,
-  CSS_DISPLAY_FLEX_DIRECTION,
-  OVER_RIDABLE_PROPS,
-} from '@src/types/types';
-
-import classNames from 'classnames/bind';
-import style from '@css/components/Card/style.module.scss';
-const cx = classNames.bind(style);
+import styled from '@emotion/styled';
+import { BASE_PROPS } from '@src/types/types';
+import { COLOR } from '@src/styles/color/color';
 
 type BaseProps = {
-  display?: CSS_DISPLAY;
-  flexDirection?: CSS_DISPLAY_FLEX_DIRECTION;
   children?: React.ReactNode;
-  centerVertical?: boolean;
-  centerHorizontal?: boolean;
 };
+
+type Props<T extends React.ElementType> = BASE_PROPS<T> & BaseProps;
 
 const DEFAULT_ELEMENT = 'div';
 
-type Props<T extends React.ElementType> = OVER_RIDABLE_PROPS<T, BaseProps>;
+type ELEMENT_TYPE = typeof DEFAULT_ELEMENT;
 
-function Card<T extends React.ElementType = typeof DEFAULT_ELEMENT>(
-  {
-    as,
-    display = 'flex',
-    flexDirection,
-    centerVertical = false,
-    centerHorizontal = false,
-    children,
-    className,
-    ...props
-  }: Props<T>,
-  ref: React.Ref<React.ElementRef<typeof DEFAULT_ELEMENT>>,
-) {
-  const ELEMENT = as || DEFAULT_ELEMENT;
+const Component = styled(DEFAULT_ELEMENT)<Props<ELEMENT_TYPE>>`
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid;
+  border-color: ${COLOR.LIGHT.gray['400']};
+  background-color: ${COLOR.LIGHT.background};
+  overflow: auto;
+  box-sizing: border-box;
+`;
 
-  return (
-    <ELEMENT
-      {...props}
-      ref={ref}
-      className={cx(
-        'card',
-        display,
-        flexDirection,
-        centerVertical && 'center-vertical',
-        centerHorizontal && 'center-horizontal',
-        className,
-      )}
-    >
-      {children}
-    </ELEMENT>
-  );
+function Card<T extends React.ElementType = typeof DEFAULT_ELEMENT>({
+  children,
+  ...props
+}: Props<T>) {
+  return <Component {...props}>{children}</Component>;
 }
 
-export type CardProps = Props<typeof DEFAULT_ELEMENT>;
-export default React.forwardRef(Card) as typeof Card;
+export default Card;

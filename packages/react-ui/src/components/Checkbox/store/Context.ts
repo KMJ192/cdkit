@@ -5,12 +5,14 @@ type ContextState = {
   multiple: boolean;
   checked: boolean;
   disabled: boolean;
+  hover: boolean;
 };
 
 const INIT_STATE: ContextState = {
   multiple: false,
   checked: false,
   disabled: false,
+  hover: false,
 };
 
 const Context = createContext(deepClone(INIT_STATE));
